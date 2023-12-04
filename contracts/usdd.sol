@@ -65,9 +65,9 @@ interface ITRC20 {
   event Approval(address indexed owner, address indexed spender, uint256 value);
 }
 
-contract ITokenDeposit is ITRC20 {
-    function deposit() public payable;
-    function withdraw(uint256) public;
+abstract contract ITokenDeposit is ITRC20 {
+    function deposit() virtual public payable;
+    function withdraw(uint256) virtual public;
     event  Deposit(address indexed dst, uint256 sad);
     event  Withdrawal(address indexed src, uint256 sad);
 }
@@ -88,7 +88,7 @@ contract USDD is ITokenDeposit {
         deposit();
     }
 
-    function deposit() public payable {
+    function deposit() override public payable {
         require(msg.tokenid == usddTokenId, "deposit tokenId not USDD");
         require(msg.value == 0, "deposit TRX is not allowed");
         // tokenvalue is long value
@@ -101,13 +101,13 @@ contract USDD is ITokenDeposit {
         emit Deposit(msg.sender, msg.tokenvalue);
     }
 
-    function withdraw(uint256 underlyingAmount) public {
+    function withdraw(uint256 underlyingAmount) override public {
         uint256 scaledAmount = underlyingAmount.mul(MUL);
         require(balanceOf_[msg.sender] >= scaledAmount, "not enough USDD balance");
         require(totalSupply_ >= scaledAmount, "not enough USDD totalSupply");
         balanceOf_[msg.sender] -= scaledAmount;
         totalSupply_ -= scaledAmount;
-        msg.sender.transferToken(underlyingAmount, usddTokenId);
+        payable(msg.sender).transferToken(underlyingAmount, usddTokenId);
 
         // TRC20 USDD burn
         emit Transfer(msg.sender, address(0x00), scaledAmount);
@@ -115,36 +115,36 @@ contract USDD is ITokenDeposit {
         emit Withdrawal(msg.sender, underlyingAmount);
     }
 
-    function totalSupply() public view returns (uint256) {
+    function totalSupply() override public view returns (uint256) {
         return totalSupply_;
     }
 
-    function balanceOf(address guy) public view returns (uint256){
+    function balanceOf(address guy) override public view returns (uint256){
         return balanceOf_[guy];
     }
 
-    function allowance(address src, address guy) public view returns (uint256){
+    function allowance(address src, address guy) override public view returns (uint256){
         return allowance_[src][guy];
     }
 
-    function approve(address guy, uint256 sad) public returns (bool) {
+    function approve(address guy, uint256 sad) override public returns (bool) {
         allowance_[msg.sender][guy] = sad;
         emit Approval(msg.sender, guy, sad);
         return true;
     }
 
     function approve(address guy) public returns (bool) {
-        return approve(guy, uint256(- 1));
+        return approve(guy, type(uint256).max);
     }
 
-    function transfer(address dst, uint256 sad) public returns (bool) {
+    function transfer(address dst, uint256 sad) override public returns (bool) {
         return transferFrom(msg.sender, dst, sad);
     }
 
-    function transferFrom(address src, address dst, uint256 sad) public returns (bool) {
+    function transferFrom(address src, address dst, uint256 sad) override public returns (bool) {
         require(balanceOf_[src] >= sad, "src balance not enough");
 
-        if (src != msg.sender && allowance_[src][msg.sender] != uint256(- 1)) {
+        if (src != msg.sender && allowance_[src][msg.sender] != type(uint256).max) {
             require(allowance_[src][msg.sender] >= sad, "src allowance is not enough");
             allowance_[src][msg.sender] -= sad;
         }
