@@ -84,7 +84,7 @@ contract USDD is ITokenDeposit {
     mapping(address => uint256) private  balanceOf_;
     mapping(address => mapping(address => uint256)) private  allowance_;
 
-    function() external payable {
+    receive() external payable {
         deposit();
     }
 
@@ -141,8 +141,7 @@ contract USDD is ITokenDeposit {
         return transferFrom(msg.sender, dst, sad);
     }
 
-    function transferFrom(address src, address dst, uint256 sad) public returns (bool)
-    {
+    function transferFrom(address src, address dst, uint256 sad) public returns (bool) {
         require(balanceOf_[src] >= sad, "src balance not enough");
 
         if (src != msg.sender && allowance_[src][msg.sender] != uint256(- 1)) {
