@@ -26,7 +26,7 @@ contract ProxyStorage {
 contract ClaimableOwnable is ProxyStorage {
     event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
 
-    constructor() public {
+    constructor() {
         owner = msg.sender;
         emit OwnershipTransferred(address(0), owner);
     }
@@ -66,7 +66,7 @@ interface ITRC20 {
 
 abstract contract Context {
     function _msgSender() internal view virtual returns (address payable) {
-        return msg.sender;
+        return payable(msg.sender);
     }
 
     function _msgData() internal view virtual returns (bytes memory) {
@@ -421,6 +421,7 @@ abstract contract BurnableTokenWithBounds is ReclaimerToken {
 }
 
 abstract contract TrueCurrency is BurnableTokenWithBounds {
+    using SafeMath for uint256;
     uint256 constant CENT = 10**16;
     uint256 constant REDEMPTION_ADDRESS_COUNT = 0x100000;
 
@@ -435,7 +436,7 @@ abstract contract TrueCurrency is BurnableTokenWithBounds {
     }
 
     function setBlacklisted(address account, bool _isBlacklisted) external onlyOwner {
-        require(uint256(account) >= REDEMPTION_ADDRESS_COUNT, "TrueCurrency: blacklisting of redemption address is not allowed");
+        require(uint256(uint160(account)) >= REDEMPTION_ADDRESS_COUNT, "TrueCurrency: blacklisting of redemption address is not allowed");
         isBlacklisted[account] = _isBlacklisted;
         emit Blacklisted(account, _isBlacklisted);
     }
