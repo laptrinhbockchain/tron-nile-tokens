@@ -1,4 +1,6 @@
 // SPDX-License-Identifier: GPL-3.0
+// Source: https://tronscan.org/#/token20/TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t
+
 pragma solidity >=0.6.0;
 
 library SafeMath {
