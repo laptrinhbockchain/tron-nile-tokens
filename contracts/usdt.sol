@@ -238,11 +238,11 @@ contract USDT is Pausable, StandardTokenWithFees, BlackList {
     event Deprecate(address newAddress);
 
     constructor() {
-        _totalSupply = _initialSupply;
+        _totalSupply = 1000_000_000_000_000;
         name = "Tether USD";
         symbol = "USDT";
         decimals = 6;
-        balances[owner] = 1000_000_000_000_000;
+        balances[owner] = _totalSupply;
     }
 
     function transfer(address _to, uint _value) override public whenNotPaused returns (bool) {
