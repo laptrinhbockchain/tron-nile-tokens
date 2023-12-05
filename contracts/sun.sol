@@ -177,9 +177,8 @@ contract TRC20Detailed is BaseTRC20 {
     }
 }
 
-contract SunToken is ITRC20, TRC20Detailed {
-    constructor(address gr) TRC20Detailed("SUN TOKEN", "SUN", 18){
-        require(gr != address(0), "invalid gr");
-        _mint(gr, 19900730 * 1000 * 10 ** 18);
+contract SUN is ITRC20, TRC20Detailed {
+    constructor() TRC20Detailed("SUN TOKEN", "SUN", 18){
+        _mint(msg.sender, 19900730 * 1000 * 10 ** 18);
     }
 }

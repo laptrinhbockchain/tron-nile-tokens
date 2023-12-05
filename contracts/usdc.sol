@@ -1047,7 +1047,7 @@ contract FiatTokenV2 is FiatTokenV1_1, EIP3009, EIP2612 {
     }
 }
 
-contract FiatTokenV2_1 is FiatTokenV2 {
+contract USDC is FiatTokenV2 {
     function initializeV2_1(address lostAndFound) external {
         // solhint-disable-next-line reason-string
         require(_initializedVersion == 1);

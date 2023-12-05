@@ -194,15 +194,15 @@ contract MinterRole {
     }
 }
 
-contract WINK is TRC20, MinterRole {
+contract WIN is TRC20, MinterRole {
     string private _name;
     string private _symbol;
     uint8 private _decimals;
 
-    constructor(string memory __name, string memory __symbol, uint8 __decimals) {
-        _name = __name;
-        _symbol = __symbol;
-        _decimals = __decimals;
+    constructor() {
+        _name = "WINkLink";
+        _symbol = "WIN";
+        _decimals = 6;
     }
 
     function name() public view returns (string memory) {

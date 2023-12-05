@@ -229,7 +229,7 @@ contract StandardTokenWithFees is StandardToken, Ownable {
     }
 }
 
-contract TetherToken is Pausable, StandardTokenWithFees, BlackList {
+contract USDT is Pausable, StandardTokenWithFees, BlackList {
     using SafeMath for uint256;
 
     event DestroyedBlackFunds(address indexed _blackListedUser, uint _balance);
@@ -237,12 +237,12 @@ contract TetherToken is Pausable, StandardTokenWithFees, BlackList {
     event Redeem(uint amount);
     event Deprecate(address newAddress);
 
-    constructor(uint _initialSupply, string memory _name, string memory _symbol, uint8 _decimals) {
+    constructor() {
         _totalSupply = _initialSupply;
-        name = _name;
-        symbol = _symbol;
-        decimals = _decimals;
-        balances[owner] = _initialSupply;
+        name = "Tether USD";
+        symbol = "USDT";
+        decimals = 6;
+        balances[owner] = 1000_000_000_000_000;
     }
 
     function transfer(address _to, uint _value) override public whenNotPaused returns (bool) {

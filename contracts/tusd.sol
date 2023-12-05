@@ -474,12 +474,11 @@ abstract contract TrueCurrency is BurnableTokenWithBounds {
     }
 }
 
-contract TrueUSD is TrueCurrency {
+contract TUSD is TrueCurrency {
     uint8 constant DECIMALS = 18;
     uint8 constant ROUNDING = 2;
 
-    function initialize() public {
-        require(!initialized, "already initialized");
+    constructor() {
         owner = msg.sender;
         emit OwnershipTransferred(address(0), owner);
         burnMin = 1000000000000000000000;

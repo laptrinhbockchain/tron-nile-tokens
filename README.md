@@ -37,5 +37,5 @@ docker run -it -p 9090:9090 --rm --name tron tronbox/tre
 ```
 Finally, use below command to deploy on Development Network:
 ```
-tronbox migrate
+source .env && tronbox migrate
 ```

@@ -256,12 +256,12 @@ contract DSTokenBase is TRC20, DSMath {
     }
 }
 
-contract DSToken is DSTokenBase(0), DSStop {
+contract JST is DSTokenBase(0), DSStop {
     string  public  symbol;
     uint256  public  decimals = 18; // standard token precision. override to customize
 
-    constructor(string memory symbol_) {
-        symbol = symbol_;
+    constructor() {
+        symbol = "JST";
     }
 
     event Mint(address indexed guy, uint wad);
