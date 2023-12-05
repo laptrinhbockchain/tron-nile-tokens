@@ -30,10 +30,10 @@ sh get-docker.sh
 rm get-docker.sh
 
 # Download the image (Run one time firstly)
-docker pull trontools/quickstart
+docker pull tronbox/tre
 
 # Start Dev Node
-docker run -it -p 9090:9090 --rm --name tron trontools/quickstart
+docker run -it -p 9090:9090 --rm --name tron tronbox/tre
 ```
 Finally, use below command to deploy on Development Network:
 ```
