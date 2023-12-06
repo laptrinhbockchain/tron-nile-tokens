@@ -1,6 +1,8 @@
 {
     "name": "Sunswap Default List on Nile",
     "logoURI": "https://sun.io/favicon.ico",
+	"id": 3,
+	"type": "all",
     "version": {
         "major": 1,
         "minor": 9,
@@ -19,7 +21,7 @@
         {
             "symbol": "SUN",
             "address": "TGqHBtQRr7N3PaXvH7749LDMVAHTJgLnw3",
-            "chainId": 1,
+            "chainId": 3448148188,
             "decimals": 18,
             "name": "SUN",
             "logoURI": "https://static.tronscan.org/production/logo/TSSMHYeV2uE9qYH95DqyoCuNCzEL1NvU3S.png"
@@ -35,7 +37,7 @@
         {
             "symbol": "WTRX",
             "address": "TPdvXuQZCkk81DkCskQzCREhfZRo9fV5Ao",
-            "chainId": 1,
+            "chainId": 3448148188,
             "decimals": 6,
             "name": "Wrapped TRX",
             "logoURI": "https://static.tronscan.org/production/upload/logo/TNUC9Qb1rRpS5CbWLmNMxXBjyFoydXjWFR.png"
@@ -43,7 +45,7 @@
         {
             "symbol": "JST",
             "address": "TESyWx9YnpVQYsvEqefwt4MRTSYi5Pb1Lx",
-            "chainId": 1,
+            "chainId": 3448148188,
             "decimals": 18,
             "name": "JUST GOV v1.0",
             "logoURI": "https://static.tronscan.org/production/logo/just_icon.png"
@@ -59,7 +61,7 @@
         {
             "symbol": "USDT",
             "address": "TRSdSUNWLGrv9NkXQcsysgGCkTFJ1wYEFM",
-            "chainId": 1,
+            "chainId": 3448148188,
             "decimals": 6,
             "name": "Tether USD",
             "logoURI": "https://static.tronscan.org/production/logo/usdtlogo.png"
